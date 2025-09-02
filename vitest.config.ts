@@ -9,6 +9,7 @@ export default defineConfig({
       provider: 'istanbul',
       reporter: ['text', 'html'],
     },
+    include: ['**/*.test.{ts,tsx}'],
   },
   resolve: {
     alias: {
