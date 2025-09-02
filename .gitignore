@@ -1,1 +1,10 @@
 node_modules
+dist/
+.next/
+build/
+out/
+coverage/
+*.tsbuildinfo
+.DS_Store
+*.log
+.env*

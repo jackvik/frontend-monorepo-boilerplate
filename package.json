@@ -2,11 +2,18 @@
   "name": "frontend-architect",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
+    "dev": "pnpm --filter ./apps/web dev",
+    "build": "pnpm --filter ./packages/ui run build && pnpm --filter ./packages/utils run build && pnpm --filter ./apps/web run build",
     "test:unit": "vitest",
     "test:e2e": "playwright test",
-    "build": "pnpm --filter ./packages/ui run build && pnpm --filter ./packages/utils run build && pnpm --filter ./apps/web run build",
+    "test:e2e:ui": "playwright test --ui",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "type-check": "tsc --noEmit",
+    "clean": "pnpm -r exec rm -rf dist .next node_modules/.cache",
     "prepare": "husky install"
   },
   "keywords": [],
@@ -35,12 +42,16 @@
     "jsdom": "^26.1.0",
     "lint-staged": "^16.1.6",
     "prettier": "^3.6.2",
+    "typescript": "^5.9.2",
     "vitest": "^3.2.4",
     "wait-on": "^8.0.4"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
       "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml}": [
       "prettier --write"
     ]
   }

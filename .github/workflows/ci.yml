@@ -16,19 +16,25 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '24.6.0' # apne project ke node version ke hisaab se change karo
+          node-version: '20'
 
       - name: Clean workspace
         run: git clean -fdx
 
       - name: Install pnpm
-        run: npm install -g pnpm
+        run: npm install -g pnpm@latest
 
       - name: Install Dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
+
+      - name: Type Check
+        run: pnpm run type-check
+
+      - name: Lint
+        run: pnpm run lint
 
       - name: Build Packages
-        run: pnpm run build  # ye root package.json ke build script ko chalayega
+        run: pnpm run build
 
       - name: Run Unit Tests (Vitest)
         run: pnpm run test:unit

@@ -1,1 +1,0 @@
-{"version":3,"sources":["../src/Button.tsx"],"sourcesContent":["import React from 'react';\n\nexport const Button = () => {\n  return <button>Click me</button>;\n};\n"],"mappings":";AAAA,OAAO,WAAW;AAEX,IAAM,SAAS,MAAM;AAC1B,SAAO,oCAAC,gBAAO,UAAQ;AACzB;","names":[]}
