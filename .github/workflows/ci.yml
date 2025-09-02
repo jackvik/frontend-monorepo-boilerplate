@@ -20,7 +20,7 @@ jobs:
 
       - name: Clean workspace
         run: git clean -fdx
-        
+
       - name: Install pnpm
         run: npm install -g pnpm
 
@@ -37,7 +37,7 @@ jobs:
         run: pnpm exec playwright install --with-deps
 
       - name: Run Playwright Tests
-        run: pnpm exec playwright test
+        run: pnpm exec playwright test --config=playwright.config.ts
 
       - name: Upload Playwright Report
         if: ${{ always() }}
