@@ -6,4 +6,12 @@ export default {
   tabWidth: 2,
   useTabs: false,
   endOfLine: 'lf',
+  overrides: [
+    {
+      files: '*.yml',
+      options: {
+        parser: 'yaml',
+      },
+    },
+  ],
 };
