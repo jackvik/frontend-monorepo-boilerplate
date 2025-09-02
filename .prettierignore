@@ -16,3 +16,4 @@ prettier.config.mjs
 package.json
 tsconfig.json
 README.md
+vercel.json
