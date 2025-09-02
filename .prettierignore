@@ -15,3 +15,4 @@ eslint.config.js
 prettier.config.mjs
 package.json
 tsconfig.json
+README.md
