@@ -37,7 +37,7 @@ jobs:
         run: pnpm exec playwright install --with-deps
 
       - name: Run Playwright Tests
-        run: pnpm exec playwright test --config=playwright.config.ts
+        run: pnpm exec playwright test --config=playwright.config.ts --debug
 
       - name: Upload Playwright Report
         if: ${{ always() }}
