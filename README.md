@@ -56,9 +56,20 @@ cd frontend-monorepo-boilerplate
 # Install dependencies
 pnpm install
 
+
+
 # Start development server
 pnpm dev
 ```
+
+### 🎯 First Time Setup
+
+After cloning and installing dependencies:
+
+1. **Explore the structure** - Check out `packages/ui` and `packages/utils`
+2. **Start development** - Run `pnpm dev` to see the web app
+3. **Run tests** - Try `pnpm test:unit` and `pnpm test:e2e`
+4. **Build everything** - Run `pnpm build` to compile all packages
 
 ## 📜 Available Scripts
 
@@ -95,20 +106,7 @@ pnpm --filter ./apps/web dev
 
 ## 🛠️ Development Workflow
 
-### 1. Adding New Dependencies
-
-```bash
-# Add to root (dev dependencies)
-pnpm add -D <package-name>
-
-# Add to specific package
-pnpm --filter @frontend-architect/ui add <package-name>
-
-# Add to app
-pnpm --filter ./apps/web add <package-name>
-```
-
-### 2. Creating New Packages
+### 1. Creating New Packages
 
 ```bash
 # Create new package directory
@@ -121,7 +119,33 @@ pnpm init
 # Add to workspace (already configured in pnpm-workspace.yaml)
 ```
 
-### 3. Git Workflow
+### 2. Creating New Apps
+
+```bash
+# Create new app directory
+mkdir apps/new-app
+cd apps/new-app
+
+# Initialize Next.js app
+npx create-next-app@latest . --typescript --tailwind --eslint
+
+# Configure workspace dependencies
+```
+
+### 3. Adding New Dependencies
+
+```bash
+# Add to root (dev dependencies)
+pnpm add -D <package-name>
+
+# Add to specific package
+pnpm --filter @frontend-architect/ui add <package-name>
+
+# Add to app
+pnpm --filter ./apps/web add <package-name>
+```
+
+### 4. Git Workflow
 
 ```bash
 # Pre-commit hooks automatically run:
