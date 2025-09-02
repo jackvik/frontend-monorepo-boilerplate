@@ -35,9 +35,15 @@ jobs:
 
       - name: Install Playwright Browsers
         run: pnpm exec playwright install --with-deps
-        
+
+      - name: Debug App Start (if Playwright fails)
+        if: failure()
+        run: |
+          echo "App start logs:"
+          cat ./apps/web/.next/trace | tail -n 100 || echo "No trace file found."
+
       - name: Run Playwright Tests
-        run: pnpm run test:e2e
+        run: pnpm exec playwright test
 
       - name: Upload Playwright Report
         if: ${{ always() }}
