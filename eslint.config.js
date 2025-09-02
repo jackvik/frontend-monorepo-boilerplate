@@ -7,16 +7,7 @@ import reactRefresh from 'eslint-plugin-react-refresh';
 import next from '@next/eslint-plugin-next';
 import prettier from 'eslint-config-prettier';
 
-const tsParserConfig = (tsconfigPath) => ({
-  languageOptions: {
-    parser: tsParser,
-    parserOptions: {
-      project: tsconfigPath,
-      tsconfigRootDir: process.cwd(),
-      /* global process */
-    },
-  },
-});
+
 
 export default [
   // JS recommended rules (flat config compatible)
@@ -28,6 +19,8 @@ export default [
         document: 'readonly',
         navigator: 'readonly',
         window: 'readonly',
+        process: 'readonly',
+        console: 'readonly',
       },
     },
     plugins: {
@@ -41,10 +34,11 @@ export default [
   },
   // TypeScript recommended rules (flat config compatible)
   {
+    files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
       parser: tsParser,
       parserOptions: {
-        project: './apps/web/tsconfig.json',
+        project: './tsconfig.base.json',
         tsconfigRootDir: process.cwd(),
       },
     },
@@ -76,7 +70,13 @@ export default [
   },
   {
     files: ['apps/web/**/*.{ts,tsx,js,jsx}'],
-    ...tsParserConfig('./apps/web/tsconfig.json'),
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        project: './apps/web/tsconfig.json',
+        tsconfigRootDir: process.cwd(),
+      },
+    },
     plugins: {
       '@typescript-eslint': tseslintPlugin,
       react,
@@ -110,7 +110,13 @@ export default [
   },
   {
     files: ['packages/ui/**/*.{ts,tsx}'],
-    ...tsParserConfig('./packages/ui/tsconfig.json'),
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        project: './packages/ui/tsconfig.json',
+        tsconfigRootDir: process.cwd(),
+      },
+    },
     plugins: {
       '@typescript-eslint': tseslintPlugin,
       react,
@@ -122,7 +128,13 @@ export default [
   },
   {
     files: ['packages/utils/**/*.{ts,tsx}'],
-    ...tsParserConfig('./packages/utils/tsconfig.json'),
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        project: './packages/utils/tsconfig.json',
+        tsconfigRootDir: process.cwd(),
+      },
+    },
     plugins: {
       '@typescript-eslint': tseslintPlugin,
     },
