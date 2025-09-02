@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "vitest",
+    "test:unit": "vitest",
+    "test:e2e": "playwright test",
     "build": "pnpm --filter ./packages/ui run build && pnpm --filter ./packages/utils run build && pnpm --filter ./apps/web run build",
     "prepare": "husky install"
   },

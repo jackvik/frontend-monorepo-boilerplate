@@ -31,13 +31,13 @@ jobs:
         run: pnpm run build  # ye root package.json ke build script ko chalayega
 
       - name: Run Unit Tests (Vitest)
-        run: pnpm test
+        run: pnpm run test:unit
 
       - name: Install Playwright Browsers
         run: pnpm exec playwright install --with-deps
 
       - name: Run Playwright Tests
-        run: pnpm exec playwright test --config=playwright.config.ts --debug
+        run: pnpm run test:e2e
 
       - name: Upload Playwright Report
         if: ${{ always() }}
