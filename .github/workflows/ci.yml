@@ -38,6 +38,8 @@ jobs:
 
       - name: Start app in background
         run: pnpm --filter ./apps/web dev &
+        env:
+            PORT: 3000
   
       - name: Wait for app to be ready
         run: npx wait-on http://localhost:3000
