@@ -15,6 +15,12 @@ export default defineConfig({
     baseURL: 'http://localhost:3000',
     trace: 'on-first-retry',
   },
+  webServer: {
+    command: 'pnpm --filter ./apps/web dev', // or your actual start command
+    port: 3000,
+    timeout: 120 * 1000, // 2 minutes
+    reuseExistingServer: !process.env.CI, // reuse locally, restart in CI
+  },
   projects: [
     {
       name: 'chromium',
