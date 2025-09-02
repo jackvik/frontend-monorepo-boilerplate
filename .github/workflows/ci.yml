@@ -25,6 +25,7 @@ jobs:
         run: npm install -g pnpm@latest
 
       - name: Install Dependencies
+        # Note: If you add new dependencies, run 'pnpm install' locally and commit pnpm-lock.yaml
         run: pnpm install --frozen-lockfile
 
       - name: Type Check
