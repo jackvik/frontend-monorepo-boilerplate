@@ -18,6 +18,9 @@ jobs:
         with:
           node-version: '24.6.0' # apne project ke node version ke hisaab se change karo
 
+      - name: Clean workspace
+        run: git clean -fdx
+        
       - name: Install pnpm
         run: npm install -g pnpm
 
