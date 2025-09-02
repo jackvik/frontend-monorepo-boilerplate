@@ -13,3 +13,4 @@ playwright-report/
 test-results/
 eslint.config.js
 prettier.config.mjs
+package.json
