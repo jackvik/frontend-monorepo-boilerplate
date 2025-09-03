@@ -4,16 +4,16 @@ A production-ready monorepo setup for modern frontend development with Next.js, 
 
 ## ✨ Features
 
-- 🏢 **Monorepo Architecture** - Organized workspace with apps and packages
-- ⚡ **Next.js 15** - Latest Next.js with App Router
-- 🔷 **TypeScript** - Full type safety across the monorepo
-- 🎨 **Tailwind CSS** - Utility-first CSS framework
-- 🧪 **Testing** - Vitest for unit tests, Playwright for E2E
-- 🔧 **ESLint & Prettier** - Code quality and formatting
-- 🚀 **CI/CD** - GitHub Actions pipeline
-- 📦 **pnpm** - Fast, disk space efficient package manager
-- 🎯 **Husky** - Git hooks for code quality
-- 📊 **Build System** - tsup for packages, Next.js for apps
+- 🏢 **Monorepo Architecture** - Organized workspace with apps and packages  
+- ⚡ **Next.js 15** - Latest Next.js with App Router  
+- 🔷 **TypeScript** - Full type safety across the monorepo  
+- 🎨 **Tailwind CSS** - Utility-first CSS framework  
+- 🧪 **Testing** - Vitest for unit tests, Playwright for E2E  
+- 🔧 **ESLint & Prettier** - Code quality and formatting  
+- 🚀 **CI/CD** - GitHub Actions pipeline  
+- 📦 **pnpm** - Fast, disk space efficient package manager  
+- 🎯 **Husky** - Git hooks for code quality  
+- 📊 **Build System** - tsup for packages, Next.js for apps  
 
 ## 🏗️ Project Structure
 
@@ -21,15 +21,20 @@ A production-ready monorepo setup for modern frontend development with Next.js, 
 frontend-architect/
 ├── apps/
 │   └── web/                    # Next.js application
-│       ├── app/               # App Router pages
-│       ├── public/            # Static assets
+│       ├── app/                # App Router pages
+│       ├── public/             # Static assets
 │       └── package.json
 ├── packages/
 │   ├── ui/                    # Shared UI components
 │   │   ├── src/
 │   │   └── package.json
-│   └── utils/                 # Utility functions
+│   ├── utils/                 # Utility functions
+│   │   ├── src/
+│   │   └── package.json
+│   └── auth-backend/          # Authentication backend
 │       ├── src/
+│       ├── prisma/
+│       ├── .env.example       # Env file sample
 │       └── package.json
 ├── tests/
 │   └── e2e/                   # Playwright E2E tests
@@ -39,12 +44,71 @@ frontend-architect/
 └── package.json               # Root package configuration
 ```
 
+## 🔐 Auth Backend (User Registration & Login)
+
+The `auth-backend` package provides backend APIs for user authentication with the following features:
+
+- User registration with secure password hashing using bcrypt  
+- Login endpoint that validates user credentials and generates JWT tokens  
+- PostgreSQL database integration via Prisma ORM  
+- Configuration through environment variables for database connection and JWT secret  
+
+***
+
+### Setup
+
+1. Copy `.env.example` to `.env` and update the following variables:
+
+```env
+DATABASE_URL=postgresql://username:password@host:port/database
+JWT_SECRET=your_secret_key_here
+```
+
+2. Run database migrations to set up the schema:
+
+```bash
+pnpm --filter ./packages/auth-backend prisma migrate dev --name init
+```
+
+3. Start the backend development server:
+
+```bash
+pnpm --filter ./packages/auth-backend dev
+```
+
+***
+
+### API Endpoints
+
+| Method | Endpoint  | Description                    | Request Body                       | Response                |
+|--------|-----------|-------------------------------|----------------------------------|-------------------------|
+| POST   | /register | Register a new user            | `{ username, email?, password }` | `{ message, userId }`   |
+| POST   | /login    | Login user and get JWT token   | `{ username, password }`          | `{ message, token }`    |
+
+***
+
+### Usage Notes
+
+- User passwords are hashed securely using bcrypt before storage.  
+- On successful login, a JWT token is returned that the frontend should store securely and send with subsequent authenticated requests via the `Authorization` header.  
+- Environment variables must be set correctly on all environments, including production, to enable database connectivity and token signing.  
+
+***
+
+### Next Steps
+
+- Develop a frontend login page and integrate it with the auth backend APIs.  
+- Implement JWT token storage and protected route logic on the frontend.  
+- Add JWT verification middleware on the backend to secure API endpoints.  
+
+***
+
 ## 🚀 Quick Start
 
 ### Prerequisites
 
-- Node.js 20+ 
-- pnpm 8+
+- Node.js 20+  
+- pnpm 8+  
 
 ### Installation
 
@@ -56,9 +120,7 @@ cd frontend-monorepo-boilerplate
 # Install dependencies
 pnpm install
 
-
-
-# Start development server
+# Start development server (includes frontend and backend)
 pnpm dev
 ```
 
@@ -66,10 +128,11 @@ pnpm dev
 
 After cloning and installing dependencies:
 
-1. **Explore the structure** - Check out `packages/ui` and `packages/utils`
-2. **Start development** - Run `pnpm dev` to see the web app
-3. **Run tests** - Try `pnpm test:unit` and `pnpm test:e2e`
-4. **Build everything** - Run `pnpm build` to compile all packages
+1. Explore the structure - Check out `packages/ui`, `packages/utils`, and `packages/auth-backend`  
+2. Run migrations for the auth backend
+3. Start backend and frontend development servers  
+4. Run tests with Vitest and Playwright  
+5. Build all packages and apps  
 
 ## 📜 Available Scripts
 
