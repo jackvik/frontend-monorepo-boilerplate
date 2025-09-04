@@ -28,6 +28,9 @@ jobs:
         # Note: If you add new dependencies, run 'pnpm install' locally and commit pnpm-lock.yaml
         run: pnpm install --frozen-lockfile
 
+      - name: Generate Prisma client
+        run: pnpx prisma generate
+
       - name: Type Check
         run: pnpm run type-check
 
