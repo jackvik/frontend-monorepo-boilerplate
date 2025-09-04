@@ -13,7 +13,8 @@
     "lint:fix": "eslint . --fix",
     "type-check": "tsc --noEmit",
     "clean": "pnpm -r exec rm -rf dist .next node_modules/.cache",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prisma:generate": "pnpm -r run prisma:generate"
   },
   "keywords": [],
   "author": "",
