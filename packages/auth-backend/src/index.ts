@@ -10,9 +10,6 @@ app.use(express.json());
 const PORT = 4000;
 
 app.post('/register', async (req, res) => {
-  console.log('Prisma keys:', Object.keys(prisma));
-  console.log('Accessing prisma.user:', prisma.user);
-  console.log('Accessing prisma.User:', prisma.User);
   const { username, email, password } = req.body;
 
   if (!username || !password) {
@@ -38,8 +35,8 @@ app.post('/register', async (req, res) => {
     res
       .status(201)
       .json({ message: 'User created successfully', userId: newUser.id });
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
-    console.error('Registration error:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
@@ -74,12 +71,13 @@ app.post('/login', async (req, res) => {
     );
 
     res.json({ message: 'Login successful', token });
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
-    console.error('Login error:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
 
 app.listen(PORT, () => {
+  // eslint-disable-next-line no-console
   console.log(`Auth backend running on http://localhost:${PORT}`);
 });

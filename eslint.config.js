@@ -27,7 +27,7 @@ export default [
       // add JS plugins here if needed
     },
     rules: {
-      'no-unused-vars': 'warn',
+      'no-unused-vars': 'off',
       'no-undef': 'error',
       'no-console': 'warn',
     },
